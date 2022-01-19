@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
     "url": "https://github.com/trip6love/PROfile-Generator/issues"
   },
   "homepage": "https://github.com/trip6love/PROfile-Generator#readme",
-  "dependencies": {
-    "jest": "^27.4.5"
+  "devDependencies": {
+    "jest": "^27.4.7"
   }
 }
