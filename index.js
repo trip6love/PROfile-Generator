@@ -75,4 +75,91 @@ const dbManager = () => {
         const manager = new Manager (name, email, id, officeNumber);
         dbArray.push(manager);
     })
+};
+
+// EMPLOYEE PROMPT //
+const dbEmployee = () => {
+    console.log('Adding employees')
+
+    return inquirer.prompt ([
+        {
+            type: 'list',
+            name: 'role',
+            message: "Please choose employee's role",
+            choices: ['Intern', 'Engineer']
+        },
+        {
+            type: 'input',
+            name: 'name',
+            message: "Name of the employee?", 
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log ("Please enter name!");
+                    return false; 
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "Please enter employee's email.",
+            validate: email => {
+                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                if (valid) {
+                    return true;
+                } else {
+                    console.log ('Please enter email!')
+                    return false; 
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Please enter employee's ID.",
+            validate: nameInput => {
+                if  (isNaN(nameInput)) {
+                    console.log ("Please enter ID!")
+                    return false; 
+                } else {
+                    return true;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: "Please enter intern's school",
+            when: (input) => input.role === "Intern",
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log ("Enter a school!")
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: "Please enter employee's github.",
+            when: (input) => input.role === "Engineer",
+            validate: nameInput => {
+                if (nameInput ) {
+                    return true;
+                } else {
+                    console.log ("Enter github username!")
+                }
+            }
+        },
+        {
+            type: 'confirm',
+            name: 'confirmAddEmployee',
+            message: 'Add more employees?',
+            default: false
+        },
+    ])
+
 }
