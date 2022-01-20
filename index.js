@@ -156,10 +156,30 @@ const dbEmployee = () => {
         },
         {
             type: 'confirm',
-            name: 'confirmAddEmployee',
+            name: 'confirmAdd',
             message: 'Add more employees?',
             default: false
         },
     ])
+    .then(employeeInput => {
+        let {name, email, id, role, school, github, confirmAdd} = employeeInput;
+        let employee;
 
-}
+        if (role === "Engineer") {
+            employee = new Engineer (name, email, id, github);
+
+        } else if (role === "Intern") {
+            employee = new Intern (name, email, id, github);
+
+        }
+
+        dbArray.push(employee);
+        if(confirmAdd) {
+            return dbEmployee(dbArray);
+
+        } else {
+            return dbArray
+        }
+    })
+
+};
