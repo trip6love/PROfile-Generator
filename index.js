@@ -2,9 +2,9 @@
 const generateHTML = require('./src/generateHTML');
 
 // PROFILES //
-const Engineer = require('./lib/Engineer');
-const Manager = require('./lib/Manager');
-const Intern = require('./lib/Intern');
+const Engineer = require('./lib/__mocks__/Engineer');
+const Manager = require('./lib/__mocks__/Manager');
+const Intern = require('./lib/__mocks__/Intern');
 
 // NODE //
 const inquirer = require('inquirer');
@@ -43,6 +43,36 @@ const dbManager = () => {
                 }
             }
         },
-        
+        {
+            type: 'input',
+            name: 'id',
+            message: "Please enter your ID number.",
+            validate: nameInput => {
+                if  (isNaN(nameInput)) {
+                    console.log ("Please enter ID!")
+                    return false; 
+                } else {
+                    return true;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: "Please enter the manager's office number",
+            validate: nameInput => {
+                if  (isNaN(nameInput)) {
+                    console.log ('Please enter an office number!')
+                    return false; 
+                } else {
+                    return true;
+                }
+            }
+        },
     ])
+    .then(managerAdd => {
+        const {name, email, id, officeNumber} = managerAdd;
+        const manager = new Manager (name, email, id, officeNumber);
+        dbArray.push(manager);
+    })
 }
