@@ -1,0 +1,13 @@
+// MANAGER CARD //
+
+
+//INTERN CARD //
+
+
+// ENGINEER CARD //
+
+
+// PUSH ARRAY TO PAGE //
+
+
+// GENERATE PAGE //

@@ -183,3 +183,29 @@ const dbEmployee = () => {
     })
 
 };
+// WRITING HTML FILE //
+const writeFile = data => {
+    fs.writeFile('./dist/index.html', data, err => {
+        
+        if(err) {
+            console.log(err);
+            return;
+            //IF NO ERROR //
+        } else {
+            console.log("Your profile has been generated in the dist folder!")
+        }
+    })
+};
+
+// CALLING //
+dbManager()
+.then(dbEmployee)
+.then(dbArray => {
+    return generateHTML(dbArray);
+})
+.then(HTML => {
+    return writeFile(HTML);
+})
+.catch(err => {
+    console.log(err);
+})
