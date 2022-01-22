@@ -1,5 +1,5 @@
 // PAGE CREATE //
-const generateHTML = require('./src/generateHTML');
+const genPage = require('./src/generateHTML');
 
 // PROFILES //
 const Engineer = require('./lib/__mocks__/Engineer');
@@ -169,7 +169,7 @@ const dbEmployee = () => {
             employee = new Engineer (name, email, id, github);
 
         } else if (role === "Intern") {
-            employee = new Intern (name, email, id, github);
+            employee = new Intern (name, email, id, github, school);
 
         }
 
@@ -201,7 +201,7 @@ const writeFile = data => {
 dbManager()
 .then(dbEmployee)
 .then(dbArray => {
-    return generateHTML(dbArray);
+    return genPage(dbArray);
 })
 .then(HTML => {
     return writeFile(HTML);
